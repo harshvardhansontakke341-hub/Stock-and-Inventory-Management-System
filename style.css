@@ -1,0 +1,434 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap");
+
+/* StockRoom - bright-environment theme: light, high contrast, always light by default */
+:root {
+    --bg: #eaf0f7;
+    --panel: #ffffff;
+    --ink: #0b1b33;
+    --mute: #3f506b;
+    --line: #aebbd0;
+    --acc: #0a5c8a;
+    --acc-ink: #ffffff;
+    --warn: #9a5700;
+    --bad: #b3261e;
+    --head: #0b2545;
+    --pop: #ff9f1c;
+    --code: #0b2545;
+    --codefg: #b8fff2;
+    --row-hover: #e3effa;
+    --shadow: 0 1px 2px rgba(11, 37, 69, .12), 0 6px 16px rgba(11, 37, 69, .10);
+    --radius: 8px;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px)
+}
+
+/* Optional dark mode: only when <html data-theme="dark"> is set */
+:root[data-theme="dark"] {
+    --bg: #0f1624;
+    --panel: #18223a;
+    --ink: #e6ebf5;
+    --mute: #a9b6cc;
+    --line: #2a3654;
+    --acc: #2fc4b0;
+    --acc-ink: #0b1a18;
+    --warn: #f0b03c;
+    --bad: #ff7a6b;
+    --head: #000000;
+    --code: #0a0f1b;
+    --row-hover: #1d2a47;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .25)
+}
+
+html {
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+    scroll-behavior: smooth
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 500 15px/1.5 Barlow, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased
+}
+
+h1,
+h2,
+h3 {
+    font-family: "Barlow Condensed", Impact, sans-serif;
+    margin: 0;
+    letter-spacing: .3px
+}
+
+h2 {
+    font-size: 24px
+}
+
+h3 {
+    font-size: 18px;
+    margin-bottom: 8px
+}
+
+/* ---------- Header / nav ---------- */
+header {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 20px;
+    background: var(--head);
+    color: #fff;
+    flex-wrap: wrap;
+    border-bottom: 3px solid var(--pop);
+    box-shadow: 0 2px 10px rgba(11, 37, 69, .35)
+}
+
+header h1 {
+    font-size: 28px;
+    color: #fff
+}
+
+header h1::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
+    border-radius: 2px;
+    background: var(--pop);
+    vertical-align: 2px
+}
+
+header small {
+    color: #b9c8e0
+}
+
+nav {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-left: auto
+}
+
+nav button {
+    background: none;
+    border: 0;
+    color: #c9d5ea;
+    padding: 8px 14px;
+    font: 600 14px Barlow, sans-serif;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: color .15s, border-color .15s
+}
+
+nav button:hover {
+    color: #fff;
+    border-color: #3a4a6b
+}
+
+nav button.on {
+    color: #fff;
+    border-color: var(--pop)
+}
+
+main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px 16px 60px
+}
+
+/* ---------- Cards & stats ---------- */
+.card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow)
+}
+
+.grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))
+}
+
+.stat {
+    border-top: 3px solid var(--acc)
+}
+
+.grid .stat:nth-child(3) {
+    border-top-color: var(--warn)
+}
+
+.grid .stat:nth-child(4) {
+    border-top-color: var(--bad)
+}
+
+.stat b {
+    font: 700 34px "Barlow Condensed", sans-serif;
+    display: block
+}
+
+.stat span {
+    color: var(--mute)
+}
+
+/* ---------- Forms ---------- */
+.bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: end;
+    margin-bottom: 12px
+}
+
+label {
+    font-size: 12.5px;
+    color: var(--mute);
+    display: flex;
+    flex-direction: column;
+    gap: 3px
+}
+
+input,
+select,
+textarea {
+    font: inherit;
+    padding: 7px 9px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--bg);
+    color: var(--ink);
+    min-width: 0;
+    transition: border-color .15s
+}
+
+input:hover,
+select:hover {
+    border-color: var(--mute)
+}
+
+input:focus,
+select:focus,
+button:focus-visible {
+    outline: 3px solid var(--pop);
+    outline-offset: 1px
+}
+
+.btn {
+    background: var(--acc);
+    color: var(--acc-ink);
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 8px 14px;
+    font: 600 14px Barlow, sans-serif;
+    cursor: pointer;
+    transition: filter .15s, transform .05s, background .15s
+}
+
+.btn:hover {
+    filter: brightness(1.08)
+}
+
+.btn:active {
+    transform: translateY(1px)
+}
+
+.btn.sec {
+    background: none;
+    color: var(--ink);
+    border-color: var(--line)
+}
+
+.btn.sec:hover {
+    background: var(--row-hover);
+    filter: none
+}
+
+.btn.del {
+    background: none;
+    color: var(--bad);
+    border-color: var(--bad)
+}
+
+.btn.del:hover {
+    background: var(--bad);
+    color: #fff;
+    filter: none
+}
+
+.btn.sm {
+    padding: 3px 9px;
+    font-size: 13px
+}
+
+/* ---------- Tables ---------- */
+.wrap {
+    overflow-x: auto
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 640px
+}
+
+th,
+td {
+    text-align: left;
+    padding: 9px 10px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top
+}
+
+th {
+    font-size: 12.5px;
+    color: var(--mute);
+    font-weight: 600;
+    background: var(--bg);
+    text-transform: uppercase;
+    letter-spacing: .5px
+}
+
+tr:not(:first-child):hover td {
+    background: var(--row-hover)
+}
+
+.pill {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    margin: 0 3px 3px 0
+}
+
+.low {
+    color: var(--warn);
+    font-weight: 600
+}
+
+.out {
+    color: var(--bad);
+    font-weight: 600
+}
+
+.ok {
+    color: var(--acc)
+}
+
+/* ---------- MongoDB shell panel ---------- */
+.shell {
+    background: var(--code);
+    color: var(--codefg);
+    font: 13px/1.55 ui-monospace, Consolas, monospace;
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    border-left: 4px solid var(--pop);
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin-bottom: 16px
+}
+
+.shell em {
+    color: #9fb3d1;
+    font-style: normal
+}
+
+/* ---------- Dialog & toast ---------- */
+dialog {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--panel);
+    color: var(--ink);
+    width: min(520px, 94vw);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .4)
+}
+
+dialog::backdrop {
+    background: #0009;
+    backdrop-filter: blur(2px)
+}
+
+.f2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 10px 0
+}
+
+.hbar {
+    height: 14px;
+    background: var(--acc);
+    border-radius: 3px;
+    min-width: 2px;
+    transition: width .4s ease
+}
+
+.toast {
+    position: fixed;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--head);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border-left: 4px solid var(--pop);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .4);
+    display: none;
+    z-index: 9;
+    max-width: 92vw
+}
+
+.two {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr))
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width:640px) {
+    header {
+        padding: 10px 12px
+    }
+
+    header small {
+        display: none
+    }
+
+    nav {
+        margin-left: 0;
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow-x: auto
+    }
+
+    nav button {
+        white-space: nowrap
+    }
+
+    .f2 {
+        grid-template-columns: 1fr
+    }
+
+    .two {
+        grid-template-columns: 1fr
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+    * {
+        transition: none !important;
+        scroll-behavior: auto !important
+    }
+}
